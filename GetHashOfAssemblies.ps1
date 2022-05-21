@@ -4,4 +4,3 @@ Get-ChildItem $location -Recurse |
 Get-FileHash | 
 ConvertTo-Json |
 Out-File $location/hashManifest.json
-
