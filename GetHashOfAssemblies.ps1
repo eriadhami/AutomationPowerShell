@@ -3,5 +3,5 @@ $location = "/users/eriadhami/projects/AkvelonTest/MSBuild/CSharpProject2/bin/Re
 Get-ChildItem $location -Recurse | 
 Get-FileHash | 
 ConvertTo-Json |
-Out-File $location/reference_manifest.json
+Out-File $location/hashManifest.json
 
