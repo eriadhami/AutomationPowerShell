@@ -1,8 +1,8 @@
-
-mkdir /users/eriadhami/projects/AkvelonTest/MSBuild/CSharpProject2/bin/Release/net7.0/Symbols
+Set-Location $ReleaseLocation
+mkdir "Symbols"
 
 $copyPdbs = @{
-    Path = "/users/eriadhami/projects/AkvelonTest/MSBuild/CSharpProject2/bin/Release/net7.0/*.pdb"
-    Destination = "/users/eriadhami/projects/AkvelonTest/MSBuild/CSharpProject2/bin/Release/net7.0/Symbols"
+    Path = $ReleaseLocation + "\net7.0\*.pdb"
+    Destination = $ReleaseLocation + "\Symbols"
   }
 Copy-Item @copyPdbs

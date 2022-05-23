@@ -1,5 +1,5 @@
 $copy = @{
-    Path = "/users/eriadhami/projects/AkvelonTest/MSBuild/CSharpProject2/bin/Release/net7.0/Ziped.zip"
-    Destination = "/users/eriadhami/projects/AkvelonTest/MSBuild/CSharpProject2/bin/Release/"
-  }
+  Path = $ReleaseLocation + "\net7.0\Ziped.zip"
+  Destination = $ReleaseLocation
+}
 Copy-Item @copy

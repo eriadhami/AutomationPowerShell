@@ -1,6 +1,4 @@
-$location = "/users/eriadhami/projects/AkvelonTest/MSBuild/CSharpProject2/bin/Release/net7.0/"
-
-Get-ChildItem $location -Recurse | 
+Get-ChildItem $HashFolder -Recurse | 
 Get-FileHash | 
 ConvertTo-Json |
-Out-File $location/hashManifest.json
+Out-File $ReleaseLocation/hashManifest.json

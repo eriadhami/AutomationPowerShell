@@ -1,2 +1,3 @@
-Set-Location /users/eriadhami/projects/AkvelonTest/MSBuild/CSharpProject2
+Set-Location $ProjectToBeBuild
+dotnet build -c Debug
 dotnet build -c Release
