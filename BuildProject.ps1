@@ -1,3 +1,9 @@
-Set-Location $ProjectToBeBuild
-#dotnet build -c Debug
-dotnet build -c Release
+Set-Location $ProjectLocation
+$projectFiles = get-childitem . *.csproj -Recurse 
+
+foreach( $projectFile in $projectFiles )
+{
+    dotnet build $projectFile -c Release
+
+    Write-Host ''
+}
