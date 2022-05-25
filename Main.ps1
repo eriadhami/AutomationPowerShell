@@ -9,12 +9,26 @@ $ProjectFolder = $GitRepo.Substring($GitRepo.LastIndexOf("/"))
 $Location = $Location + $ProjectFolder
 Set-Location $Location
 
-#Gets All project files (if there is two or more projects) to be builded in Release Config
+#Gets All project files change them to enable Symbols in Release config (if there is two or more projects) and build in Release Config
 $ProjectFiles = get-childitem . *.csproj -Recurse 
 
 foreach( $ProjectFile in $ProjectFiles )
 {
-    dotnet build $projectFile -c Release
+    $xmlDoc = (Get-Content $ProjectFile) -as [Xml]
+
+    [xml]$InsertNode = @'
+ <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+   <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+   <DebugType>full</DebugType>
+   <DebugSymbols>true</DebugSymbols>
+ </PropertyGroup>
+'@
+
+    $xmlDoc.Project.AppendChild($xmlDoc.ImportNode($InsertNode.PropertyGroup, $true))
+
+    $xmlDoc.Save($ProjectFile)
+
+    dotnet build $ProjectFile -c Release
 }
 
 #Creates Hash Manifest with the Hash used, File location and the Hash
